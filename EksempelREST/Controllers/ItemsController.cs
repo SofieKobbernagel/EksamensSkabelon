@@ -1,5 +1,6 @@
 using EksamensSkabelon;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace EksempelREST.Controllers
 {
@@ -19,6 +20,13 @@ namespace EksempelREST.Controllers
 
         //kun til documentation i swagger 
         //swagger giver fejl hvis ikke disse er tilstede
+        //httpGet, HttpPost osv. angiver hvilken HTTP-metode der skal bruges
+        //tells ASP.NET Core which action to invoke when a client makes a GET request that matches the route.
+        /*
+        [HttpGet] => GET /api/items
+        [HttpGet("{id}")] => GET /api/items/3
+        [HttpGet("search")] => GET /api/items/search
+         */
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
