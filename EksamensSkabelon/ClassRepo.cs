@@ -7,6 +7,7 @@ using System.Xml.Linq;
 
 namespace EksamensSkabelon
 {
+    //for interface, højreklik, quick actions, extract interface
     public class ClassRepo : IClassRepo
     {
         //private fields behøver ikke gettere/settere da de kun bruges internt i klassen
