@@ -28,8 +28,11 @@ namespace EksempelREST.Controllers
         [HttpGet("search")] => GET /api/items/search
          */
         [HttpGet]
+        //producesResponseType er kun til dokumentation
         [ProducesResponseType(StatusCodes.Status200OK)]
+        //Statuskoderne er en type ActionResult
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        //ActionResult<T> gør at vi kan returnere både data og HTTP statuskoder
         public ActionResult<List<Class1>> Get()
         {
             List<Class1> entries = _repo.GetAll();
