@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
+//builder gør det muligt at konfigurere og oprette en webapplikation
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,10 +26,10 @@ builder.Services.AddSingleton<IClassRepo>(_repo);
 
 //ellers
 builder.Services.AddSingleton<IClassRepo, ClassRepo>();
-
+//singleton betyder at der kun oprettes en instans af ClassRepo som deles af alle der bruger den.
 
 // formål med CORS er at styre og sikre, hvilke webapplikationer (origins) der må tilgå din server fra en browser.
-// Her defineres en CORS-politik med navnet "allowFromController", som tillader anmodninger fra alle domæner, metoder og headers.
+// Her defineres en CORS-politik med navnet "allowAll", som tillader anmodninger fra alle domæner, metoder og headers.
 // uden cors ville browseren blokere anmodninger fra andre domæner end det, hvor serveren kører.
 builder.Services.AddCors(options =>
 {
@@ -58,7 +59,7 @@ app.MapOpenApi();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("allowVueApp");
+app.UseCors("allowAll");
 
 app.UseAuthorization();
 
