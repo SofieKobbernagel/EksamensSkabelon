@@ -33,7 +33,7 @@ namespace EksempelREST.Controllers
         //Statuskoderne er en type ActionResult
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         //ActionResult<T> gør at vi kan returnere både data og HTTP statuskoder
-        public ActionResult<List<Class1>> Get()
+        public ActionResult<IEnumerable<Class1>> Get()
         {
             List<Class1> entries = _repo.GetAll();
             if (entries.Count == 0) { return NoContent(); }
