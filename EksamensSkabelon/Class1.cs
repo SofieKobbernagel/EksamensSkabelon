@@ -7,7 +7,7 @@ namespace EksamensSkabelon
         //hvis database bruges, skal properties hedde det samme som kolonnerne i databasen
         public int Id { get; set; }
 
-        //i tilfælde af validering
+        //i tilfælde af validering laves propfull
         private string _prop1;
         public string Prop1
         {
