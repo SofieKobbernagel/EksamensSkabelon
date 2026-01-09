@@ -6,18 +6,28 @@ namespace EksamensSkabelon
     {
         //hvis database bruges, skal properties hedde det samme som kolonnerne i databasen
         public int Id { get; set; }
-        public string Prop1 { get; set; }
+
+        //i tilfælde af validering
+        private string _prop1;
+        public string Prop1
+        {
+            get { return _prop1; }
+            set 
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Prop1 må ikke være tom");
+                _prop1 = value; 
+            }
+        }
+
         //public gør at property kan tilgås udefra klassen
         //get; set; gør at property både kan læses og skrives til
         public string Prop2 { get; set; }
 
         //Constructor med parametre
-        public Class1(string ExampleName, string E2)
+        public Class1(string ExampleProp, string E2)
         {
-            //i tilfælde af validering
-            if (string.IsNullOrWhiteSpace(ExampleName))
-                throw new ArgumentException("Name må ikke være tom");
-            Prop1 = ExampleName;
+            Prop1 = ExampleProp;
             Prop2 = E2;
         }
 
