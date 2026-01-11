@@ -14,19 +14,24 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-//Hvis Database:
-/*
-IClassRepo _repo;
-var optionsBuilder = new DbContextOptionsBuilder<ClassDbContext>();
-optionsBuilder.UseSqlServer(EksamensSkabelon.Secret.ConnectionString);
-ClassDbContext _dbContext = new(optionsBuilder.Options);
-_repo = new ClassRepoDb(_dbContext);
-builder.Services.AddSingleton<IClassRepo>(_repo);
-*/
+bool useDatabase = false;
 
-//ellers
-builder.Services.AddSingleton<IClassRepo, ClassRepo>();
-//singleton betyder at der kun oprettes en instans af ClassRepo som deles af alle der bruger den.
+if (useDatabase)
+{
+    {
+        IClassRepo _repo;
+        var optionsBuilder = new DbContextOptionsBuilder<ClassDbContext>();
+        optionsBuilder.UseSqlServer(EksamensSkabelon.Secret.ConnectionString);
+        ClassDbContext _dbContext = new(optionsBuilder.Options);
+        _repo = new ClassRepoDb(_dbContext);
+        builder.Services.AddSingleton<IClassRepo>(_repo);
+    }
+}
+else
+{
+    //singleton betyder at der kun oprettes en instans af ClassRepo som deles af alle der bruger den.
+    builder.Services.AddSingleton<IClassRepo, ClassRepo>();
+}
 
 // formål med CORS er at styre og sikre, hvilke webapplikationer (origins) der må tilgå din server fra en browser.
 // Her defineres en CORS-politik med navnet "allowAll", som tillader anmodninger fra alle domæner, metoder og headers.
