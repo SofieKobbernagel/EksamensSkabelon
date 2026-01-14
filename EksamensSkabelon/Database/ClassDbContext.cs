@@ -14,6 +14,7 @@ namespace EksamensSkabelon.Database
         {
 
         }
+        //Skal være det samme som tabellen i databasen
         public DbSet<Class1> Items { get; set; }
     }
 }
